@@ -15,14 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
       - uses: actions/checkout@v2
-      - name: Install Dependencies
       - run: npm install
-      - name: Build
       - run: npm run build
 
-      - name: Deploy
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ screts.AWS_BUCKET_NAME}}/core/latest
         env:
